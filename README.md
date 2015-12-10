@@ -14,8 +14,8 @@ You need to have [NodeJS](https://nodejs.org/) and [Bower](http://bower.io/) ins
     git clone git@github.com:tbprojects/kittensApp.git
     cd kittensApp
     npm install -g grunt-cli bower yo generator-karma generator-angular json-server jshint
-    
-`node_modules` and `bower_components` are included in the repository just to speedup the setup.     
+    npm install
+    bower install
 
 ## Build & development
 
