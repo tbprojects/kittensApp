@@ -8,6 +8,8 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
+  grunt.loadNpmTasks('grunt-json-server');
+  grunt.loadNpmTasks('grunt-connect-proxy');
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -19,10 +21,20 @@ module.exports = function (grunt) {
     cdnify: 'grunt-google-cdn'
   });
 
+  // Configurable API names
+  var apiConfig = {
+    default: 'localhost:8080',
+    fake:    'localhost:9010'
+  };
+
+  var selectedApi = apiConfig[grunt.option('api')] || grunt.option('api') || apiConfig.default;
+  var selectedApiConfig = selectedApi.split(':');
+
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: 'dist',
+    api: {hostname: selectedApiConfig[0], port: selectedApiConfig[1]}
   };
 
   // Define the configuration for all the tasks
@@ -67,8 +79,37 @@ module.exports = function (grunt) {
       }
     },
 
+    // Json Server settings
+    json_server: {
+      custom_options: {
+        options: {
+          db: 'fake_db.json',
+          routes: 'fake_routes.json',
+          hostname: 'localhost',
+          port: 9010
+        }
+      }
+    },
+
     // The actual grunt server settings
     connect: {
+      proxies: [
+        {
+          context: '/api',
+          host: appConfig.api.hostname,
+          port: appConfig.api.port
+        },
+        {
+          context: '/service',
+          host: 'localhost',
+          port: 8090,
+          changeOrigin: true,
+          https: false,
+          rewrite: {
+            '/service': '/service'
+          }
+        }
+      ],
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
@@ -78,19 +119,27 @@ module.exports = function (grunt) {
       livereload: {
         options: {
           open: true,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
-              ),
-              connect.static(appConfig.app)
-            ];
+          middleware: function (connect, options) {
+            if (!Array.isArray(options.base)) {
+              options.base = [options.base];
+            }
+
+            var middlewares = [];
+            var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+
+            middlewares.push(proxySnippet);
+
+            // Serve static files.
+            options.base.forEach(function(base) {
+              middlewares.push(connect.static(base));
+            });
+
+            middlewares.push(connect.static('.tmp'));
+            middlewares.push(connect().use('/bower_components', connect.static('./bower_components')));
+            middlewares.push(connect().use('/app/styles', connect.static('./app/styles')));
+            middlewares.push(connect.static(appConfig.app));
+
+            return middlewares;
           }
         }
       },
@@ -220,7 +269,7 @@ module.exports = function (grunt) {
             }
           }
       }
-    }, 
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -270,31 +319,6 @@ module.exports = function (grunt) {
       }
     },
 
-    // The following *-min tasks will produce minified files in the dist folder
-    // By default, your `index.html`'s <!-- Usemin block --> will take care of
-    // minification. These next options are pre-configured if you do not wish
-    // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
 
     imagemin: {
       dist: {
@@ -404,9 +428,23 @@ module.exports = function (grunt) {
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
-      server: [
-        'copy:styles'
-      ],
+      server: {
+        tasks: [
+          'watch'
+        ],
+        options: {
+          logConcurrentOutput: true
+        }
+      },
+      serverWithFakeApi: {
+        tasks: [
+          'json_server',
+          'watch'
+        ],
+        options: {
+          logConcurrentOutput: true
+        }
+      },
       test: [
         'copy:styles'
       ],
@@ -432,13 +470,19 @@ module.exports = function (grunt) {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
 
+    var concurrentServerTask = 'concurrent:server';
+    if (grunt.option('api') === 'fake') {
+      concurrentServerTask = 'concurrent:serverWithFakeApi';
+    }
+
     grunt.task.run([
       'clean:server',
       'wiredep',
-      'concurrent:server',
       'postcss:server',
+      'copy:styles',
+      'configureProxies:server',
       'connect:livereload',
-      'watch'
+      concurrentServerTask
     ]);
   });
 

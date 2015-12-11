@@ -24,6 +24,17 @@ After executing the last command you should have app ready for development with 
 
 Run `grunt` for building and `grunt serve` for preview.
 
+## Using custom API
+
+**Path to the API is `/api/`**
+
+By default app is expecting to have an API at `localhost:8080`.
+
+You may use `grunt serve --api=fake` - to work with fake api thanks to [json-server](https://github.com/typicode/json-server). 
+It runs at `localhost:9010`. Fake database is defined `fake_db.json`.
+
+You may also define custom host with `grunt serve --api=localhost:3000`
+
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
