@@ -17,17 +17,17 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+      .when('/kittens', {
+        templateUrl: 'views/kittens/index.html',
+        controller: 'KittensIndexCtrl',
+        controllerAs: 'kittens/index'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/kittens/new', {
+        templateUrl: 'views/kittens/new.html',
+        controller: 'KittensNewCtrl',
+        controllerAs: 'kittens/new'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/kittens'
       });
   });

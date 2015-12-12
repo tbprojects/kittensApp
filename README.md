@@ -16,6 +16,9 @@ You need to have [NodeJS](https://nodejs.org/) and [Bower](http://bower.io/) ins
     npm install -g grunt-cli bower yo generator-karma generator-angular json-server jshint
     npm install
     bower install
+    grunt test
+           
+After executing the last command you should have app ready for development with passing specs.           
 
 ## Build & development
 
