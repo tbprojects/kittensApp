@@ -18,18 +18,18 @@ describe('Controller: ApplicationCtrl', function () {
 
   describe('isActiveLink', function(){
     beforeEach(inject(function($location){
-      spyOn($location, 'path').and.returnValue('/kittens')
+      spyOn($location, 'path').and.returnValue('/kittens');
     }));
 
     describe('when path equals passed view location', function(){
       it('should return true', function(){
-        expect(scope.isActiveLink('/kittens')).toBeTruthy()
+        expect(scope.isActiveLink('/kittens')).toBeTruthy();
       });
     });
 
     describe('when path does not equal passed view location', function(){
       it('should return false', function(){
-        expect(scope.isActiveLink('/kittens/new')).toBeFalsy()
+        expect(scope.isActiveLink('/kittens/new')).toBeFalsy();
       });
     });
   });
