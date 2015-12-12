@@ -33,6 +33,7 @@
     "jshint-stylish": "^1.0.0",
     "karma": "^0.13.15",
     "karma-jasmine": "*",
+    "karma-ng-html2js-preprocessor": "*",
     "karma-phantomjs-launcher": "*",
     "phantomjs": "^1.9.19",
     "time-grunt": "^1.0.0"
