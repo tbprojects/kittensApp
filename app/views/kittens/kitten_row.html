@@ -1,0 +1,15 @@
+<div class="well col-md-6 col-md-offset-3">
+  <h4>{{resource.title}}</h4>
+  <p>Submitted by {{resource.submitted_by}}</p>
+  <p class="text-center">
+    <img class="img-responsive img-thumbnail" ng-src="{{resource.url}}" />
+  </p>
+  <div class="row">
+    <div class="col-md-6">
+      <p>{{resource.commentsLabel()}}</p>
+    </div>
+    <div class="col-md-6 text-right">
+      <p>{{resource.likesLabel()}}</p>
+    </div>
+  </div>
+</div>
