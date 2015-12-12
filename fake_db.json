@@ -1,3 +1,52 @@
 {
-  "kittens": []
+  "kittens": [
+    {
+      "id": 1,
+      "title": "Taste good but I can't feel my whiskers!",
+      "url": "http://www.lolcats.com/images/u/13/39/tastegood.jpg",
+      "submitted_by": "Jessica",
+      "comments_count": 4,
+      "likes": 32,
+      "approved": true
+    },
+    {
+      "id": 2,
+      "title": "Oh hi I fixed ur blinds",
+      "url": "http://www.lolcats.com/images/u/07/22/lolcatsdotcomkzi5b2ktz93zav8f.jpg",
+      "submitted_by": "Pete",
+      "comments_count": 1,
+      "likes": 16,
+      "approved": true
+    },
+    {
+      "id": 3,
+      "title": "If not for sits... why is it made of warm?",
+      "url": "http://www.lolcats.com/images/u/11/45/lolcatsdotcom3gp6wm7dw3jihq9t.jpg",
+      "submitted_by": "Richard",
+      "comments_count": 0,
+      "likes": 8,
+      "approved": true
+    },
+    {
+      "id": 4,
+      "title": "I eat you now, k?",
+      "url": "http://www.lolcats.com/images/u/10/31/lolcatsdotcombqs7lrsqbj2lzpwk.jpg",
+      "submitted_by": "Sarah",
+      "comments_count": 12,
+      "likes": 4,
+      "approved": true
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "content": "Oh lol! That's sooo funny! ^^",
+      "author": "Dude"
+    },
+    {
+      "id": 2,
+      "content": "Cute like a pink unicorn XD",
+      "author": "Chick"
+    }
+  ]
 }
