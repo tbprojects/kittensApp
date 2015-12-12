@@ -8,5 +8,11 @@
  * Controller of the kittensApp
  */
 angular.module('kittensApp')
-  .controller('KittensIndexCtrl', function ($scope) {
+  .controller('KittensIndexCtrl', function ($scope, Kitten) {
+    $scope.collection = [];
+    Kitten.getList().then(assignCollection);
+
+    function assignCollection(collection) {
+      $scope.collection = collection;
+    }
   });

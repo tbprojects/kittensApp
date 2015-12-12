@@ -16,4 +16,11 @@ describe('Controller: KittensIndexCtrl', function () {
     });
   }));
 
+  describe('fetching collection', function () {
+    it('should assign fetched collection', inject(function ($httpBackend) {
+      $httpBackend.expect('GET', '/kittens').respond([{}]);
+      $httpBackend.flush();
+      expect(scope.collection.length).toBe(1);
+    }));
+  });
 });
