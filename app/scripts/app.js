@@ -13,8 +13,12 @@ angular
     'ngAnimate',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'restangular'
   ])
+  .config(function (RestangularProvider) {
+    RestangularProvider.setBaseUrl('/api');
+  })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/kittens', {
