@@ -39,6 +39,23 @@ You may also define custom host with `grunt serve --api=localhost:3000`
 
 Running `grunt test` will run the unit tests with karma.
 
-## Exercises
+## Workshop exercises
 
-to be defined
+1. Add possibility to like the kitten by clicking a button on the kittens list.
+    * implement `like` method in kittens model that sends POST request to `/kitten/:id/like` and stores info 
+    on liked kitten in localstorage
+    * implement `liked` method which relays on information stored in localstorage
+    * add "like" button and handle clicking on it
+    * implement tests
+2. Label for comments has to be changed from `n comments` to `no meows yet`, `1 meow`, `n meows`.
+    * implement change in the kittens model
+    * test different conditions for that method
+3. There is a buggy feature for adding new kittens. There is no data validation and failure is not handled properly.
+ We should validate presence of `title`, `url` and `submitted_by` attributes. If any of them is empty, then error 
+ message should be presented. Otherwise let's make a POST request to `/kittens` and display success / failure message.
+    * implement `isValid` method in kitten model... and test it.
+    * test successful / failing scenarios of creating kitten record.
+    * use `SweetAlert` service for displaying messages and test calling that service by using `spyOn`. 
+4. Implement fetching comments for a certain kitten. Assume there is `/kittens/:id/comments` endpoint.
+    * implement `fetchComments` method in kitten model... and test it. 
+    * display comments in the `/kittens/:id` view
