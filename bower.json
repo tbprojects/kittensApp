@@ -7,6 +7,7 @@
     "angular-animate": "^1.4.0",
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
+    "angular-sweetalert": "latest",
     "angular-touch": "^1.4.0",
     "restangular": "^1.5.1",
     "lodash": "latest"
@@ -24,5 +25,8 @@
         "dist/js/bootstrap.js"
       ]
     }
+  },
+  "resolutions": {
+    "angular": "1.4.8"
   }
 }

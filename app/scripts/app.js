@@ -14,7 +14,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'restangular'
+    'restangular',
+    'oitozero.ngSweetAlert'
   ])
   .config(function (RestangularProvider) {
     RestangularProvider.setBaseUrl('/api');
