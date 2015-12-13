@@ -1,6 +1,6 @@
 'use strict';
 
-function expectHavingNewMethod(serviceName) {
+window.expectHavingNewMethod = function(serviceName) {
   var service,
     model;
 
