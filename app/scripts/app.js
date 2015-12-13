@@ -14,11 +14,15 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'LocalStorageModule',
     'restangular',
     'oitozero.ngSweetAlert'
   ])
   .config(function (RestangularProvider) {
     RestangularProvider.setBaseUrl('/api');
+  })
+  .config(function (localStorageServiceProvider) {
+    localStorageServiceProvider.setPrefix('kittens-app');
   })
   .config(function ($routeProvider) {
     $routeProvider
