@@ -8,7 +8,7 @@
  * Service in the kittensApp.
  */
 angular.module('kittensApp')
-  .service('Kitten', function (Restangular) {
+  .service('Kitten', function (Restangular, newInstance) {
     Restangular.extendModel('kittens', function (model) {
       model.commentsLabel = function () {
         return model.comments_count + ' comments';
@@ -20,5 +20,8 @@ angular.module('kittensApp')
 
       return model;
     });
-    return Restangular.all('kittens');
+    var service = Restangular.all('kittens');
+    service.new = newInstance('kittens');
+
+    return service;
   });

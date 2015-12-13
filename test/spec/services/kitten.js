@@ -12,6 +12,8 @@ describe('Service: Kitten', function () {
     Kitten = _Kitten_;
   }));
 
+  expectHavingNewMethod('Kitten');
+
   describe('as Restangular service', function () {
     it('should have getList defined', function () {
       expect(Kitten.getList).toBeDefined();
