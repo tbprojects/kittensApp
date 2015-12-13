@@ -10,6 +10,9 @@
 angular.module('kittensApp')
   .service('Kitten', function (Restangular, newInstance) {
     Restangular.extendModel('kittens', function (model) {
+      model.comments_count = model.comments_count || 0;
+      model.likes = model.likes || 0;
+
       model.commentsLabel = function () {
         return model.comments_count + ' comments';
       };
