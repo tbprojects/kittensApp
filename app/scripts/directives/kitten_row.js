@@ -11,9 +11,6 @@ angular.module('kittensApp')
     return {
       restrict: 'E',
       templateUrl: 'views/kittens/kitten_row.html',
-      scope: {resource: '='},
-      link: function postLink(scope, element, attrs) {
-
-      }
+      scope: {resource: '='}
     };
   });

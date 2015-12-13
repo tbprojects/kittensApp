@@ -8,11 +8,17 @@
  * Controller of the kittensApp
  */
 angular.module('kittensApp')
-  .controller('KittensIndexCtrl', function ($scope, Kitten) {
-    $scope.collection = [];
-    Kitten.getList().then(assignCollection);
+  .controller('KittensIndexCtrl', function (Kitten) {
+    var vm = this;
+    vm.collection = [];
+
+    activate();
+
+    function activate() {
+      Kitten.getList().then(assignCollection);
+    }
 
     function assignCollection(collection) {
-      $scope.collection = collection;
+      vm.collection = _.sortByOrder(collection, ['id'], ['desc']);
     }
   });

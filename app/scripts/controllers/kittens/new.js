@@ -8,5 +8,13 @@
  * Controller of the kittensApp
  */
 angular.module('kittensApp')
-  .controller('KittensNewCtrl', function ($scope) {
+  .controller('KittensNewCtrl', function (Kitten, $location) {
+    var vm = this;
+    vm.resource = Kitten.new();
+    vm.save = save;
+
+    function save() {
+      vm.resource.save();
+      $location.path('/kittens');
+    }
   });

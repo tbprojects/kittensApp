@@ -24,12 +24,12 @@ angular
       .when('/kittens', {
         templateUrl: 'views/kittens/index.html',
         controller: 'KittensIndexCtrl',
-        controllerAs: 'kittens/index'
+        controllerAs: 'vm'
       })
       .when('/kittens/new', {
         templateUrl: 'views/kittens/new.html',
         controller: 'KittensNewCtrl',
-        controllerAs: 'kittens/new'
+        controllerAs: 'vm'
       })
       .otherwise({
         redirectTo: '/kittens'
