@@ -1,15 +1,23 @@
 <div class="well col-md-6 col-md-offset-3">
-  <h4>{{resource.title}}</h4>
-  <p>Submitted by {{resource.submitted_by}}</p>
+  <h4>{{vm.resource.title}}</h4>
+  <p>Submitted by {{vm.resource.submitted_by}}</p>
   <p class="text-center">
-    <img class="img-responsive img-thumbnail" ng-src="{{resource.url}}" />
+    <img class="img-responsive img-thumbnail" ng-src="{{vm.resource.url}}" />
   </p>
   <div class="row">
     <div class="col-md-6">
-      <p>{{resource.commentsLabel()}}</p>
+      <p>{{vm.resource.commentsLabel()}}</p>
     </div>
     <div class="col-md-6 text-right">
-      <p>{{resource.likesLabel()}}</p>
+      <p>
+        <button type="button" class="btn btn-link"
+                ng-hide="vm.liked()"
+                ng-click="vm.like()">
+          <i class="glyphicon glyphicon-thumbs-up"></i>
+        </button>
+        <span ng-show="vm.resource.liked()">Liked - </span>
+        {{vm.resource.likesLabel()}}
+      </p>
     </div>
   </div>
 </div>

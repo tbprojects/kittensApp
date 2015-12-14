@@ -21,6 +21,10 @@ angular.module('kittensApp')
         return model.likes + ' likes';
       };
 
+      model.like = function () {
+        return model.customPOST({}, 'like');
+      };
+
       return model;
     });
     var service = Restangular.all('kittens');

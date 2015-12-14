@@ -11,6 +11,9 @@ angular.module('kittensApp')
     return {
       restrict: 'E',
       templateUrl: 'views/kittens/kitten_row.html',
-      scope: {resource: '='}
+      scope: {resource: '='},
+      controller: 'KittensRowCtrl',
+      controllerAs: 'vm',
+      bindToController: true
     };
   });

@@ -21,10 +21,10 @@ describe('Service: Kitten', function () {
   });
 
   describe('model methods', function () {
-    beforeEach(inject(function (Restangular) {
-      var attributes = {title: 'Grumpy', comments_count: 5, likes: 2};
-      model = Restangular.restangularizeElement(null, attributes, 'kittens');
-    }));
+    beforeEach(function () {
+      var attributes = {id: 1, title: 'Grumpy', comments_count: 5, likes: 2};
+      model = Kitten.new(attributes);
+    });
 
     describe('commentsLabel', function () {
       it('should return "5 comments"', function () {
@@ -36,6 +36,14 @@ describe('Service: Kitten', function () {
       it('should return "2 likes"', function () {
         expect(model.likesLabel()).toEqual('2 likes');
       });
+    });
+
+    describe('like', function () {
+      it('should make POST request', inject(function ($httpBackend) {
+        $httpBackend.expect('POST', '/kittens/1/like');
+        model.like();
+        $httpBackend.expectPOST('/kittens/1/like');
+      }));
     });
   });
 });
