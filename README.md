@@ -41,15 +41,18 @@ Running `grunt test` will run the unit tests with karma.
 
 ## Workshop exercises
 
-1. Add possibility to like the kitten by clicking a button on the kittens list.
-    * implement `like` method in kittens model that sends POST request to `/kitten/:id/like` and stores info 
-    on liked kitten in localstorage
-    * implement `liked` method which relays on information stored in localstorage
-    * add "like" button and handle clicking on it
-    * implement tests
-2. Label for comments has to be changed from `n comments` to `no meows yet`, `1 meow`, `n meows`.
+1. Label for comments has to be changed from `n comments` to `no meows yet`, `1 meow`, `n meows`.
     * implement change in the kittens model
     * test different conditions for that method
+2. Add possibility to like the kitten by clicking a button on the kittens list.
+    * implement `like` method in kittens model that sends POST request to `/kitten/:id/like`
+    * implement controller for `kittens-row` directive
+        * add `like` method that calls `resource.like()`
+            * when request is successful: store info on liked kitten in localstorage and increment `resource.likes`
+            * when request is failed: display error message with SweetAlert 
+        * implement `liked` method which relays on information stored in localstorage
+    * add "like" button to `kitten-row` directive and handle clicking on it
+    * implement tests
 3. There is a buggy feature for adding new kittens. There is no data validation and failure is not handled properly.
  We should validate presence of `title`, `url` and `submitted_by` attributes. If any of them is empty, then error 
  message should be presented. Otherwise let's make a POST request to `/kittens` and display success / failure message.
