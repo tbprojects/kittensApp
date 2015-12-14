@@ -37,5 +37,31 @@ describe('Service: Kitten', function () {
         expect(model.likesLabel()).toEqual('2 likes');
       });
     });
+
+    describe('isValid', function () {
+      it('should return false when title is missing', function () {
+        expect(validateModel({title: '', url: 'http', submitted_by: 'john'})).toBeFalsy();
+      });
+
+      it('should return false when url is missing', function () {
+        expect(validateModel({title: 'cute', url: '', submitted_by: 'john'})).toBeFalsy();
+      });
+
+      it('should return false when submitted_by is missing', function () {
+        expect(validateModel({title: 'cute', url: 'http', submitted_by: ''})).toBeFalsy();
+      });
+
+      it('should return false when url is invalid', function () {
+        expect(validateModel({title: 'cute', url: 'lol', submitted_by: 'john'})).toBeFalsy();
+      });
+
+      it('should return true when all required fields are filled', function () {
+        expect(validateModel({title: 'cute', url: 'http', submitted_by: 'john'})).toBeTruthy();
+      });
+
+      function validateModel (params) {
+        return Kitten.new(params).isValid();
+      }
+    });
   });
 });

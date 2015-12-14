@@ -14,12 +14,20 @@ angular.module('kittensApp')
     vm.save = save;
 
     function save() {
-      vm.resource.save().then(onSaved);
+      if (vm.resource.isValid()) {
+        vm.resource.save().then(onSaved, onFailure);
+      } else {
+        onFailure();
+      }
     }
 
     function onSaved() {
       SweetAlert.swal('Good job!', 'Your kitten has been added!', 'success');
       $timeout(redirectToList, 1500);
+    }
+
+    function onFailure() {
+      SweetAlert.swal('Uh oh', 'Kitten has not been added. Ensure all required fields are filled.', 'error');
     }
 
     function redirectToList() {

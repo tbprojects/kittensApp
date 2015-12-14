@@ -21,6 +21,20 @@ angular.module('kittensApp')
         return model.likes + ' likes';
       };
 
+      model.isValid = function () {
+        return !hasMissingValues() && hasValidUrl();
+      };
+
+      function hasMissingValues() {
+        return (_.isEmpty(model.title) ||
+          _.isEmpty(model.url) ||
+          _.isEmpty(model.submitted_by));
+      }
+
+      function hasValidUrl() {
+        return _.startsWith(model.url, 'http');
+      }
+
       return model;
     });
     var service = Restangular.all('kittens');

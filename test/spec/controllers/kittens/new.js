@@ -29,24 +29,43 @@ describe('Controller: KittensNewCtrl', function () {
 
     }));
 
-    it('should make POST request', function () {
-      KittensNewCtrl.save();
-      $httpBackend.expectPOST('/kittens');
+    describe('when resource is valid', function () {
+      it('should make POST request', function () {
+        KittensNewCtrl.save();
+        $httpBackend.expectPOST('/kittens');
+      });
+
+      it('should display success message', inject(function (SweetAlert) {
+        spyOn(SweetAlert, 'swal').and.callThrough();
+        KittensNewCtrl.save();
+        $httpBackend.flush();
+        expect(SweetAlert.swal).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), 'success');
+      }));
+
+      it('should redirect back to the list', inject(function ($location, $timeout) {
+        spyOn($location, 'path').and.callThrough();
+        KittensNewCtrl.save();
+        $httpBackend.flush();
+        $timeout.flush();
+        expect($location.path).toHaveBeenCalledWith('/kittens');
+      }));
     });
 
-    it('should display success message', inject(function (SweetAlert) {
-      spyOn(SweetAlert, 'swal').and.callThrough();
-      KittensNewCtrl.save();
-      $httpBackend.flush();
-      expect(SweetAlert.swal).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), 'success');
-    }));
+    describe('when resource is invalid', function () {
+      beforeEach(function () {
+        spyOn(KittensNewCtrl.resource, 'isValid').and.returnValue(false);
+      });
 
-    it('should redirect back to the list', inject(function ($location, $timeout) {
-      spyOn($location, 'path').and.callThrough();
-      KittensNewCtrl.save();
-      $httpBackend.flush();
-      $timeout.flush();
-      expect($location.path).toHaveBeenCalledWith('/kittens');
-    }));
+      it('should display error message', inject(function (SweetAlert) {
+        spyOn(SweetAlert, 'swal').and.callThrough();
+        KittensNewCtrl.save();
+        expect(SweetAlert.swal).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(String), 'error');
+      }));
+
+      it('should not make a POST request', function () {
+        KittensNewCtrl.save();
+        $httpBackend.verifyNoOutstandingRequest();
+      });
+    });
   });
 });
