@@ -27,8 +27,25 @@ describe('Service: Kitten', function () {
     }));
 
     describe('commentsLabel', function () {
-      it('should return "5 comments"', function () {
-        expect(model.commentsLabel()).toEqual('5 comments');
+      describe('when comments count is 0', function () {
+        it('should return "no meows yet"', function () {
+          model.comments_count = 0;
+          expect(model.commentsLabel()).toEqual('no meows yet');
+        });
+      });
+
+      describe('when comments count is 1', function () {
+        it('should return "1 meow"', function () {
+          model.comments_count = 1;
+          expect(model.commentsLabel()).toEqual('1 meow');
+        });
+      });
+
+      describe('when comments count is greater then 1', function () {
+        it('should return "3 meows"', function () {
+          model.comments_count = 3;
+          expect(model.commentsLabel()).toEqual('3 meows');
+        });
       });
     });
 

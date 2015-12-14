@@ -14,7 +14,13 @@ angular.module('kittensApp')
       model.likes = model.likes || 0;
 
       model.commentsLabel = function () {
-        return model.comments_count + ' comments';
+        if (model.comments_count === 0) {
+          return 'no meows yet';
+        } else if (model.comments_count === 1) {
+          return '1 meow';
+        } else {
+          return model.comments_count + ' meows';
+        }
       };
 
       model.likesLabel = function () {
