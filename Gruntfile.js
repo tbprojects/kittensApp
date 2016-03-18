@@ -88,7 +88,8 @@ module.exports = function (grunt) {
           db: 'fake_db.json',
           routes: 'fake_routes.json',
           hostname: 'localhost',
-          port: 9010
+          port: 9010,
+          customRoutes: require('./fake_custom_routes')
         }
       }
     },
