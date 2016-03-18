@@ -11,6 +11,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-json-server');
   grunt.loadNpmTasks('grunt-connect-proxy');
 
+  var serveStatic = require('serve-static');
+
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -131,13 +133,13 @@ module.exports = function (grunt) {
 
             // Serve static files.
             options.base.forEach(function(base) {
-              middlewares.push(connect.static(base));
+              middlewares.push(serveStatic(base));
             });
 
-            middlewares.push(connect.static('.tmp'));
-            middlewares.push(connect().use('/bower_components', connect.static('./bower_components')));
-            middlewares.push(connect().use('/app/styles', connect.static('./app/styles')));
-            middlewares.push(connect.static(appConfig.app));
+            middlewares.push(serveStatic('.tmp'));
+            middlewares.push(connect().use('/bower_components', serveStatic('./bower_components')));
+            middlewares.push(connect().use('/app/styles', serveStatic('./app/styles')));
+            middlewares.push(serveStatic(appConfig.app));
 
             return middlewares;
           }
@@ -148,13 +150,13 @@ module.exports = function (grunt) {
           port: 9001,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
-              connect.static('test'),
+              serveStatic('.tmp'),
+              serveStatic('test'),
               connect().use(
                 '/bower_components',
-                connect.static('./bower_components')
+                serveStatic('./bower_components')
               ),
-              connect.static(appConfig.app)
+              serveStatic(appConfig.app)
             ];
           }
         }

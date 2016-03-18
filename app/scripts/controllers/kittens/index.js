@@ -19,6 +19,6 @@ angular.module('kittensApp')
     }
 
     function assignCollection(collection) {
-      vm.collection = _.sortByOrder(collection, ['id'], ['desc']);
+      vm.collection = _.orderBy(collection, ['id'], ['desc']);
     }
   });
