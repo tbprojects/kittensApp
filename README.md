@@ -62,3 +62,9 @@ Running `grunt test` will run the unit tests with karma.
 4. Implement fetching comments for a certain kitten. Assume there is `/kittens/:id/comments` endpoint.
     * implement `fetchComments` method in kitten model... and test it. 
     * display comments in the `/kittens/:id` view
+5. Implement "What does the kitten say?" feature
+    * add "Kitten says..." button in `kittens/index.html`.
+    * fetch json data from `/kittens/says` which would contain `{message: 'string'}`. You may use Restangular customGET.
+    * use `SweetAlert` service to display message.
+    * add custom route in `fake_custom_routes.js` to mock `/kitten_says` API endpoint. It should return
+     random sounds, like 'meow', 'purr', 'hiss', 'yowl'...    
