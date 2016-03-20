@@ -59,7 +59,7 @@ Running `grunt test` will run the unit tests with karma.
     * implement `isValid` method in kitten model... and test it.
     * test successful / failing scenarios of creating kitten record.
     * use `SweetAlert` service for displaying messages and test calling that service by using `spyOn`. 
-4. Implement fetching comments for a certain kitten. Assume there is `/kittens/:id/comments` endpoint.
+4. Implement fetching comments for a certain kitten. Assume there is `/comments?kitten_id=:id` endpoint.
     * implement `fetchComments` method in kitten model... and test it. 
     * display comments in the `/kittens/:id` view
 5. Implement "What does the kitten say?" feature
