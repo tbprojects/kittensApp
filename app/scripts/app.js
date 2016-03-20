@@ -36,6 +36,11 @@ angular
         controller: 'KittensNewCtrl',
         controllerAs: 'vm'
       })
+      .when('/kittens/:id', {
+        templateUrl: 'views/kittens/show.html',
+        controller: 'KittensShowCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({
         redirectTo: '/kittens'
       });

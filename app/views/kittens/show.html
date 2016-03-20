@@ -1,0 +1,12 @@
+<kitten-row resource="vm.resource"></kitten-row>
+<div class="well col-md-6 col-md-offset-3">
+  <h4>{{vm.resource.commentsLabel()}}</h4>
+
+  <div ng-repeat="comment in vm.comments">
+    <blockquote>
+      <p>{{comment.content}}</p>
+      <footer>{{comment.author}}</footer>
+    </blockquote>
+    <hr>
+  </div>
+</div>

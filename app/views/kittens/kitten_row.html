@@ -2,7 +2,9 @@
   <h4>{{resource.title}}</h4>
   <p>Submitted by {{resource.submitted_by}}</p>
   <p class="text-center">
-    <img class="img-responsive img-thumbnail" ng-src="{{resource.url}}" />
+    <a ng-href="#/kittens/{{resource.id}}">
+      <img class="img-responsive img-thumbnail" ng-src="{{resource.url}}" />
+    </a>
   </p>
   <div class="row">
     <div class="col-md-6">

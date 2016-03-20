@@ -40,11 +40,13 @@
   "comments": [
     {
       "id": 1,
+      "kitten_id": 1,
       "content": "Oh lol! That's sooo funny! ^^",
       "author": "Dude"
     },
     {
       "id": 2,
+      "kitten_id": 1,
       "content": "Cute like a pink unicorn XD",
       "author": "Chick"
     }
