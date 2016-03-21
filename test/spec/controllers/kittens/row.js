@@ -4,6 +4,7 @@ describe('Controller: KittensRowCtrl', function () {
 
   // load the controller's module
   beforeEach(module('kittensApp'));
+  beforeEach(module('kittensApp.templates'));
 
   var KittensRowCtrl,
     scope;
