@@ -1,14 +1,14 @@
 'use strict';
 
 /**
- * @ngdoc service
+ * @ngdoc factory
  * @name kittensApp.Kitten
  * @description
  * # Kitten
  * Service in the kittensApp.
  */
 angular.module('kittensApp')
-  .service('Kitten', function (Restangular, newInstance) {
+  .factory('Kitten', function (Restangular, newInstance) {
     Restangular.extendModel('kittens', function (model) {
       model.comments_count = model.comments_count || 0;
       model.likes = model.likes || 0;

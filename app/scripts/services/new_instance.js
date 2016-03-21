@@ -1,14 +1,14 @@
 'use strict';
 
 /**
- * @ngdoc service
+ * @ngdoc factory
  * @name kittensApp.newInstance
  * @description
  * # newInstance
  * Service in the kittensApp.
  */
 angular.module('kittensApp')
-  .service('newInstance', function (Restangular) {
+  .factory('newInstance', function (Restangular) {
     return function (route) {
       return function (params) {
         params = params || {};
