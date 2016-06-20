@@ -20,7 +20,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-filerev": "^2.1.2",
     "grunt-google-cdn": "^0.4.3",
-    "grunt-jscs": "^3.0.0",
+    "grunt-jscs": "2.8.0",
     "grunt-json-server": "tbprojects/grunt-json-server#50cd43c804cf784db6e5d672d3a73635f498b545",
     "grunt-karma": "2.0.0",
     "grunt-newer": "^1.1.0",
