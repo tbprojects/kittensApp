@@ -1,5 +1,8 @@
 <div class="well col-md-6 col-md-offset-3">
-  <h4>{{resource.title}}</h4>
+  <h4>
+    {{resource.title}}
+    <kitten-share kitten="resource"></kitten-share>
+  </h4>
   <p>Submitted by {{resource.submitted_by}}</p>
   <p class="text-center">
     <img class="img-responsive img-thumbnail" ng-src="{{resource.url}}" />
