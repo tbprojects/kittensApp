@@ -39,7 +39,22 @@ You may also define custom host with `grunt serve --api=localhost:3000`
 
 Running `grunt test` will run the unit tests with karma.
 
-## Workshop exercises
+## Workshop exercises - Developing Angular App
+
+1. Destroy kitten
+    * add button for removing a kitten (kitten_row.html)
+    * add /kittens/:id/confirm_destroy route with delete confirmation message
+    * flow: user clicks destroy button; user confirms destroying; user is redirected to kittens list.
+2. Share kitten
+    * add directive with inline template containing a button to share a kitten. Directive should have isolated scope
+      that accepts kitten object
+    * add KittenShareService (factory) that implements `.toMail(kitten, recipientEmail)` method. 
+      It should open `mailto:some@mail.com` url via injected $window service. You can gather email `via prompt` method.
+3. Paginate kittens
+    * modify KittensIndexCtrl to have `perPage`, `page`, `totalPages` attributes.
+    * add pagination buttons in `kittens/index.html` - page numbers and previous / next buttons    
+
+## Workshop exercises - Testing Angular App
 
 1. Label for comments has to be changed from `n comments` to `no meows yet`, `1 meow`, `n meows`.
     * implement change in the kittens model
