@@ -44,7 +44,9 @@ Running `grunt test` will run the unit tests with karma.
 1. Destroy kitten
     * add button for removing a kitten (kitten_row.html)
     * add /kittens/:id/confirm_destroy route with delete confirmation message
-    * flow: user clicks destroy button; user confirms destroying; user is redirected to kittens list.
+    * flow: user clicks destroy button; user confirms destroying; user is redirected to kittens list
+    * hint: kitten instance already implements `remove` method which returns a Promise
+    * you may use: yeoman route generator, ng-href, ng-click, $location, $routeParams
 2. Share kitten
     * add directive with inline template containing a button to share a kitten. Directive should have isolated scope
       that accepts kitten object

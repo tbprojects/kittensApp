@@ -36,6 +36,11 @@ angular
         controller: 'KittensNewCtrl',
         controllerAs: 'vm'
       })
+      .when('/kittens/:id/confirm_destroy', {
+        templateUrl: 'views/kittens/confirm_destroy.html',
+        controller: 'KittenConfirmDestroyCtrl',
+        controllerAs: 'vm'
+      })
       .otherwise({
         redirectTo: '/kittens'
       });
